@@ -1,6 +1,7 @@
 import React, { Component } from 'react';import { bind } from 'bluebird';
 import './Login.css';
-import axios from 'axios'
+import axios from 'axios';
+var CSSTransitionGroup = require('react-transition-group/CSSTransitionGroup')
 const axiosOptions = {
   headers: {
     'Content-Type': 'application/json',
