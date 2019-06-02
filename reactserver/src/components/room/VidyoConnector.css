@@ -1,0 +1,24 @@
+* {
+	margin:       0;
+	padding:      0;
+	overflow: 	  hidden;
+}
+
+.renderer {
+	position:     absolute;
+	top:          0px;
+	right:        0px;
+	bottom:       70px;
+}
+
+.rendererFullScreen {
+	left:         0px;
+}
+
+.hidden {
+	display:      none;
+}
+
+.hiddenPermanent {
+	display:      none;
+}
