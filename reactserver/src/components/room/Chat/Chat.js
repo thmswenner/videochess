@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Message from './Message.js';
-import Chatbar from './Chatbar.js'
+import Chatbar from './Chatbar.js';
+
 
 
 class Chat extends Component {
@@ -12,7 +13,8 @@ class Chat extends Component {
 
 render() {
   const list = this.props.messages.map(e => {
-    return <Message 
+    return <Message
+      id="new-msg"
       key = { e.id }
       content = { e }
     />
