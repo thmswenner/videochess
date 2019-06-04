@@ -23,7 +23,7 @@ class Room extends Component {
       messages: [],
       redirect: false,
       username: '',
-      show: true,
+      show: false,
       rematch: false,
       allData: {},
       myTime: 300,

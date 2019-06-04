@@ -3,25 +3,30 @@ import Message from './Message.js';
 import Chatbar from './Chatbar.js'
 
 
-function Chat(props) {
+class Chat extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
 
-  const list = props.messages.map(e => {
+render() {
+  const list = this.props.messages.map(e => {
     return <Message 
       key = { e.id }
       content = { e }
     />
   })
 
-
-  return (
-    <div className="chat-container">
-      <div className="message-area">
-        {list}
-      </div>
-    <Chatbar addNewMessage={props.addNewMessage} />
-  </div>
-  )
+    return (
+      <div className="chat-container">
+        <div className="message-area">
+          {list}
+        </div>
+      <Chatbar addNewMessage={this.props.addNewMessage} />
+    </div>
+    )
+  }
 }
 
 export default Chat;
