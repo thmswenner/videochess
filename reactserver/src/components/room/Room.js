@@ -33,6 +33,7 @@ class Room extends Component {
   }
 
   componentDidMount(){
+    window["connect"]()
     axios.get('http://localhost:3001/auth', axiosOptions)
       .then((res) => {
         this.setState({username: res.data})
@@ -106,6 +107,7 @@ class Room extends Component {
   }
 
   handleTimer = (msg, gameData, roomData, startTime) => {
+    //TODO - make dynamic
     if (msg === 'set'){
       this.setState({ myTime: startTime, theirTime: startTime})
     }
@@ -121,39 +123,40 @@ class Room extends Component {
       clearInterval(window.timer1)
       clearInterval(window.timer2)
     }
+    if (msg === 'reset') {
+      this.setState({ myTime: 300, theirTime: 300})
+    }
   }
 
 
   render() {
 
     return (
-      <div className="wrapper">
-        <div className="room-2col">
-         <LinkModal show={this.state.show}/>
+      <div className="room-2col">
+        <LinkModal show={this.state.show}/>
 
-            {this.state.rematch && <Rematch username={this.state.username}
-                                            rematch={this.state.rematch}
-                                            room={this.props.match.url.split('/')[2]}
-                                            allData={this.state.allData}
-                                            socket={this.socket}
-                                   />}
+          {this.state.rematch && <Rematch username={this.state.username}
+                                          rematch={this.state.rematch}
+                                          room={this.props.match.url.split('/')[2]}
+                                          allData={this.state.allData}
+                                          socket={this.socket}
+                                 />}
+
           <div className="chessboard-container">
-
-            <Board room={this.props.match.url.split('/')[2]}
-                   socket={this.socket}
-                   updateGameData={this.updateGameData}
-                   updateBoardData={this.updateBoardData}
-                   setRematch={this.setRematch}
-                   handleTimer={this.handleTimer} />
+          <Board room={this.props.match.url.split('/')[2]}
+                 socket={this.socket}
+                 updateGameData={this.updateGameData}
+                 updateBoardData={this.updateBoardData}
+                 setRematch={this.setRematch}
+                 handleTimer={this.handleTimer} />
           </div>
 
           <div className="sidebar">
-            <div className="video-container">
-              <Video />
-            </div>
-            <Chessbar theirTime={this.state.theirTime} myTime={this.state.myTime}/>
-            <Chat addNewMessage={this.addNewMessage} messages={this.state.messages} />
+          <div className="video-container">
+            <Video />
           </div>
+          <Chessbar theirTime={this.state.theirTime} myTime={this.state.myTime}/>
+          <Chat addNewMessage={this.addNewMessage} messages={this.state.messages} />
         </div>
       </div>
     );
